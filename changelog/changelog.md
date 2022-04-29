@@ -1,3 +1,84 @@
+## 2022-04-26 18:54 [701,702,804]
+
+แจ้งปรับปรุง คำสั่ง SQL 
+**701 คัดกรองผู้สูงอายุ 60 ปี ขึ้นไป**
+เพื่อให้สามารถประมวลผล คัดกรองก่อนเสียชีวิตได้
+บรรทัดที่ 482 - 483 จาก 
+
+```sql
+AND person.death <> 'y'
+AND person.discharge_date IS NULL
+```
+
+เป็น
+
+```sql
+AND (person.death <> 'y'
+AND person.discharge_date IS NULL) OR (person.death = 'y' and person.discharge_date > ovst.vstdate )
+```
+
+ดังรูปภาพประกอบ
+
+![](changelog.assets/D20220429T134057.png)
+
+------
+
+แจ้งปรับปรุง คำสั่ง SQL 
+**702 ประเมินกิจวัตรประจำวัน ADL ตามคู่มือ 12 รายการ**
+เพื่อให้สามารถประมวลผล คัดกรองก่อนเสียชีวิตได้
+บรรทัดที่ 42-43 จาก
+
+```sql
+AND (   (person.death <> 'y' AND person.discharge_date IS NULL)
+           OR person.death_date < ovst.vstdate)
+```
+
+เป็น
+
+```sql
+AND (   (person.death <> 'y' AND person.discharge_date IS NULL)
+           OR (person.death =  'y' AND person.death_date > ovst.vstdate) )
+```
+
+ดังรูปภาพประกอบ
+
+ ![](changelog.assets/D20220429T134743.png)
+
+------
+
+แจ้งปรับปรุง คำสั่ง SQL 
+**คัดกรองภาวะซึมเศร้า 2Q**
+เพื่อให้สามารถประมวลผล คัดกรองก่อนเสียชีวิตได้
+บรรทัดที่ 482 - 483 จาก 
+
+```sql
+AND person.death <> 'y'
+AND person.discharge_date IS NULL
+AND person.house_regist_type_id IN (1, 3)
+AND (   depression_screen.feel_boring_2_week IN ('y', 'n')
+           OR depression_screen.feel_depression_2_week IN ('y', 'n')
+           OR depression_screen.no_depression IN ('y', 'n'))
+      AND person.death_date IS NULL
+```
+
+เป็น
+
+```sql
+AND ((person.death <> 'y'
+AND person.discharge_date IS NULL) OR (person.death = 'y' AND person.discharge_date > ovstdiag.vstdate))
+AND person.house_regist_type_id IN (1, 3)
+AND (   depression_screen.feel_boring_2_week IN ('y', 'n')
+           OR depression_screen.feel_depression_2_week IN ('y', 'n')
+           OR depression_screen.no_depression IN ('y', 'n'))
+
+```
+
+ดังรูปภาพประกอบ
+
+![](changelog.assets/D20220429T135549.png)
+
+------
+
 ## 2022-04-26 18:54 [801]
 
 แจ้งปรับปรุง คำสั่ง SQL 
