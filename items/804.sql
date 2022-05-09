@@ -21,8 +21,12 @@ FROM ovstdiag
 WHERE     ovstdiag.vstdate BETWEEN @start_date AND @stop_date
       AND ovstdiag.icd10 = @diag_code
       AND person.nationality = 99
-AND ((person.death <> 'y'
-AND person.discharge_date IS NULL) OR (person.death = 'y' AND person.discharge_date > ovstdiag.vstdate and ovstdiag.vstdate BETWEEN @start_date AND @stop_date))
+AND 
+(
+(person.death <> 'y'AND person.discharge_date IS NULL) 
+OR 
+(person.death = 'y' AND person.discharge_date > ovstdiag.vstdate and ovstdiag.vstdate BETWEEN @start_date AND @stop_date)
+)
 AND person.house_regist_type_id IN (1, 3)
 AND (   depression_screen.feel_boring_2_week IN ('y', 'n')
            OR depression_screen.feel_depression_2_week IN ('y', 'n')
