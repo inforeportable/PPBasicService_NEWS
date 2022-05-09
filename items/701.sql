@@ -479,8 +479,12 @@ FROM (SELECT person.cid,
       WHERE     ovst.vstdate BETWEEN @start_date AND @stop_date
             AND person.nationality = 99
             AND person.sex IN (1, 2)
-            AND (person.death <> 'y'
-            AND person.discharge_date IS NULL) OR (person.death = 'y' and person.discharge_date > ovst.vstdate and ovst.vstdate BETWEEN @start_date AND @stop_date )
+            AND
+( 
+(person.death <> 'y' AND person.discharge_date IS NULL) 
+OR 
+(person.death = 'y' and person.discharge_date > ovst.vstdate and ovst.vstdate BETWEEN @start_date AND @stop_date )
+)
             AND person.house_regist_type_id IN (1, 3)
       GROUP BY person.cid
       HAVING     timestampdiff(year, person.birthdate, max(ovst.vstdate)) >=
