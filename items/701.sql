@@ -687,3 +687,5 @@ FROM (SELECT person.cid,
       -- stop sum value
 
       ORDER BY ovst.hn, ovst.vn) AS temp_701;
+
+-- Fix [2022-05-09 15:06:54]
