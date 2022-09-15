@@ -6,7 +6,7 @@
 		"app_in_round": "002",
 		"app_in_round_date_sdate": "2022-04-01",
 		"app_in_round_date_edate": "2022-09-30",
-		"app_sql_link": "",
-		"app_note_link": ""
+		"app_sql_link": "https://raw.githubusercontent.com/inforeportable/PPBasicService_NEWS/main/2565/app_sql.sql",
+		"app_note_link": "https://raw.githubusercontent.com/inforeportable/PPBasicService_NEWS/main/2565/app_note.txt"
 	}]
 }
