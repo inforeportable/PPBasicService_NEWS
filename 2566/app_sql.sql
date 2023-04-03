@@ -91,3 +91,46 @@ INDEX `lname` (`lname`) USING BTREE ,
 INDEX `activity_code` (`activity_code`) USING BTREE ,
 INDEX `h_sub` (`h_sub`) USING BTREE 
 );
+
+DROP TABLE IF EXISTS pbs_import_text  ;
+
+CREATE TABLE IF NOT EXISTS pbs_import_text (
+`id`  int(11) NOT NULL AUTO_INCREMENT ,
+`path`  mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL ,
+`record`  int(11) NULL DEFAULT NULL ,
+`process_status`  mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL ,
+PRIMARY KEY (`id`)
+);
+
+DROP TABLE IF EXISTS pbs_items_process  ;
+
+CREATE TABLE IF NOT EXISTS pbs_items_process (
+`id`  bigint(21) NULL DEFAULT NULL ,
+`activity_code`  mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL ,
+`count_record`  int(1) NULL DEFAULT 0 ,
+`sum_cost`  int(1) NULL DEFAULT 0 ,
+`sql_code`  longtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL 
+);
+
+DROP TABLE IF EXISTS pbs_items_list ;
+
+CREATE TABLE IF NOT EXISTS pbs_items_list (
+`id`  int(11) NOT NULL AUTO_INCREMENT ,
+`cid`  mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL ,
+`pname`  mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL ,
+`fname`  mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL ,
+`lname`  mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL ,
+`activity_code`  mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL ,
+`activity_cost`  mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL ,
+`date_serv`  mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL ,
+`h_sub`  mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL ,
+`process_datetime`  mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL ,
+`local_instype_code`  mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL ,
+`local_instype_name`  mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL ,
+`instype_code`  mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL ,
+`instype_name`  mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL ,
+`instype_main`  mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL ,
+`instype_hsub`  mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL ,
+`instype_id`  mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL ,
+PRIMARY KEY (`id`)
+) ;
