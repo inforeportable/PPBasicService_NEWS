@@ -132,3 +132,17 @@ CREATE TABLE IF NOT EXISTS pbs_items_list (
 `instype_id`  mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL ,
 PRIMARY KEY (`id`)
 ) ;
+
+CREATE TABLE  IF NOT EXISTS `pbs_items_update_api` (
+`app_update`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
+`app_version`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
+`app_in_year`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
+`app_in_round`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
+`app_in_round_date_sdate`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
+`app_in_round_date_edate`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
+`app_sql_link`  text CHARACTER SET utf8 COLLATE utf8_general_ci NULL ,
+`app_note_link`  text CHARACTER SET utf8 COLLATE utf8_general_ci NULL ,
+`pc_name_click`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ,
+`pc_name_click_datetime`  datetime NULL DEFAULT NULL ,
+INDEX `app_update` (`app_update`) USING BTREE 
+) ;
